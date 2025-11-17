@@ -1,4 +1,6 @@
 import os
+from openpyxl import *
+from data.py import * 
 
 folder_path = ""
 
@@ -30,7 +32,9 @@ def get_folder_path():
 
 def main():
     folder_path = get_folder_path()
-    
+
+
+
 
     
     
