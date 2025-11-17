@@ -1,10 +1,13 @@
 import os
-from openpyxl import *
-from data.py import * 
+import json 
 
 folder_path = ""
+data = {}
 
-# Greeting & request for folder path...
+def read_data_json():
+    with open('data.json', 'r') as f:
+        return json.load(f)
+
 def get_folder_path():
     # Print the initial greeting only once
     print("Welcome to the ENGR102 Starship Problem Generator.")
@@ -31,7 +34,12 @@ def get_folder_path():
             print("Invalid selection. Please enter '1' for Yes or '2' for No.")
 
 def main():
-    folder_path = get_folder_path()
+    # Greeting & request for folder path...
+    # folder_path = get_folder_path()
+
+    # Reading data.json
+    data = read_data_json()
+    
 
 
 
