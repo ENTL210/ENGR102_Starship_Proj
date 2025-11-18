@@ -6,7 +6,7 @@ data = {}
 
 def read_data_json():
     with open('data.json', 'r') as f:
-        return json.load(f)
+        return json.load(f)["data"]
 
 def get_folder_path():
     # Print the initial greeting only once
@@ -39,6 +39,8 @@ def main():
 
     # Reading data.json
     data = read_data_json()
+    
+    
     
 
 
