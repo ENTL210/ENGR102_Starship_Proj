@@ -10,6 +10,7 @@ def generate_answer_keys():
     print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
     
 def generate_time_stamps():
+    timestamps = []
     # Set time interval where data being collected (7:30 AM - 10:00 PM)
     start = datetime.datetime.strptime('7:30:00', '%H:%M:%S')
     end = datetime.datetime.strptime('22:00:00', '%H:%M:%S')
@@ -20,8 +21,8 @@ def generate_time_stamps():
     # Inititalize while loop with t...
     t = start
     while t <= end:
-        print(t.strftime('%H:%M:%S'))
-        t += delta
+        timestamps.append = f"{t}" # Converting datetime obj to str...
+        t += delta # Add 5 minutes...
     
 
 def generate_problem(export_directory, data):
@@ -151,6 +152,7 @@ def main():
     data = read_data_json()
     
     generate_problem(export_directory=export_path, data=data)
+    
     
     
 
