@@ -87,7 +87,7 @@ def generate_problem(export_directory, data):
             
             # Initializing workbook...
             wb_basename = key
-            wb_path = os.path.join(os.path.basename(making_dataset), f"{key}.xlsx")
+            wb_path = os.path.join(making_dataset, f"{key}.xlsx")
             wb = Workbook()
             ws = wb.active
             
@@ -156,7 +156,11 @@ def get_folder_path(test_path="/Users/edwardl210/Documents/Coding/ENGR102_Starsh
             if os.path.isdir(path):
                 print("\n       Path has been verified")
                 print("")
-                return path
+                
+                export_path = os.path.join(path, "engr102_starship_problems")
+                os.makedirs(os.path.join(export_path, "Answer Keys"), exist_ok=True)
+                
+                return export_path
             else: 
                 print("       Provided path is invalid. Please try again")
                 continue
@@ -203,6 +207,7 @@ def main():
         exit()
     
     # Get export destination...
+    
     export_path = get_folder_path()
     
     # Reading data.json
