@@ -2,7 +2,7 @@ import os
 import time
 import json 
 import random
-from openpyxl import Workbook
+from openpyxl import Workbook, load_workbook
 import datetime
 
 
@@ -77,12 +77,18 @@ def generate_problem(export_directory, data):
         
         print(f"\n       Generated Dataset Path: {making_dataset}")
         
+        # Declaring key to be ignored...
+        skipped_key_value = None
+        key_to_ignore = "station_power_input"
+        
+        # Loop through all the keys except station_power_input...
         for key in dataset:
             start_time = time.time()
             
             if key == "season":
                 continue
-            if key == "station_power_input":
+            if key == key_to_ignore:
+                skipped_key_value = key
                 continue
             
             # Initializing workbook...
@@ -92,7 +98,7 @@ def generate_problem(export_directory, data):
             ws = wb.active
             
             # Generating (min, avg, max) of each data file...
-            print(f"\n       Generating {key}.xlss...")
+            print(f"\n       Generating {key}.xlsx...")
             print(f"\n            (", end=" ")
             for key,value in dataset[key].items():
                 print(f"{key.capitalize()}: {value}", end=" ")
@@ -128,10 +134,80 @@ def generate_problem(export_directory, data):
             # set elapsed time to ms and 2 deci points...
             elapsed_time = round((end_time - start_time) * 1000, 3) 
             # print out the elapsed time...
-            print(f"\n            {wb_basename}.xlss has been generated ({elapsed_time}ms)") 
+            print(f"\n            {wb_basename}.xlsx has been generated ({elapsed_time}ms)") 
             
+        # Generating station_power_input_std.xlsx & modify power_input_pv
+        if skipped_key_value != None:
+            start_time = time.time()
+            basename = skipped_key_value
             
-        
+            # Initialize workbooks
+            wb = Workbook()
+            ws = wb.active
+            wb_path = os.path.join(making_dataset, f"power_input_std.xlsx")
+            
+            # Generating (min, avg, max) of each data file...
+            print(f"\n       Generating power_input_std.xlsx...")
+            print(f"\n            (", end=" ")
+            for key,value in dataset[basename].items():
+                print(f"{key.capitalize()}: {value}", end=" ")
+            print(f")")
+            
+            print("\n            Generating timestamp column...")
+            
+            # Generating timestamp list...
+            time_stamps = generate_time_stamps()
+            
+            # Generating timestamp column & label...
+            time_stamps_column = 1
+            ws.cell(1, 1, "Time (%HH:%MM:%SS)")
+            
+            for index, value in enumerate(time_stamps, 1):
+                ws.cell(index + 1, time_stamps_column, value)
+                
+            print("\n            Generating values column...")
+                
+            # Generating value column & label...
+            values_column = 2
+            ws.cell(1, 2, f"Values ({dataset[basename]["unit"] if "unit" in dataset[basename] else ""})")
+            
+            # Set values columns to 0 initially...
+            current_row = 1
+            while current_row <= len(time_stamps):
+                ws.cell(current_row + 1, values_column, 0)
+                current_row += 1
+                
+            # Numbers of times robo went to the charging stations...
+            total_nums_of_charging_charging_intervals = random.randint(20, len(time_stamps) // 3)
+
+            # When robot first charge of the day...
+            start_interval = 0
+            
+            for current_nums_of_charging_intervals in range(1, total_nums_of_charging_charging_intervals + 1):
+                # Randomized how long the robot will be charged...
+                duration_of_intervals = random.randint(1,3)
+                end_interval = start_interval + duration_of_intervals
+                
+                while start_interval <= end_interval:
+                    # Getting value from json...
+                    value = dataset[basename]["value"]
+                    # Add noise
+                    value = generate_random_nums(value - 0.5, value, value + 0.5, 1)[0]
+                    ws.cell(start_interval + 2, values_column, value)
+
+                    start_interval += 1
+                
+                start_interval = random.randint(1, len(time_stamps))
+                current_nums_of_charging_intervals += 1
+                
+            wb.save(wb_path)
+            
+            end_time = time.time()
+            # set elapsed time to ms and 2 deci points...
+            elapsed_time = round((end_time - start_time) * 1000, 3) 
+            # print out the elapsed time...
+            print(f"\n            {wb_basename}.xlsx has been generated ({elapsed_time}ms)") 
+            
         print("-" * 75)        
 
 def read_data_json():
