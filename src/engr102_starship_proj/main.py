@@ -2,12 +2,16 @@ import os
 import time
 import json 
 import random
+from openpyxl import Workbook
 
 def generate_answer_keys():
     print("-" * 75)
     print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
 
 def generate_problem(export_directory, data):
+    # Initialize openpyxl Wb...
+    wb = Workbook()
+    
     print("-" * 75) # seperator
     print((" " * 25) + "[1] Generating Problems" + (" " * 25))
     print("-" * 75) # seperator
@@ -15,6 +19,7 @@ def generate_problem(export_directory, data):
     nums_of_datasets = len(data)
     
     for dataset in data:
+        
         # The directory to the dataset that in progress of making...
         making_dataset = None
         
@@ -33,7 +38,15 @@ def generate_problem(export_directory, data):
                 making_dataset = dataset_path
                 break
         
-        print((" " * 25) + f"Generating {os.path.basename(making_dataset)}..." + (" " * 25))
+        print(f"\n       Generating {os.path.basename(making_dataset)}...")
+        
+        print(f"\n       Generated Dataset Path: {making_dataset}")
+        
+        for key in dataset:
+            if key == "season":
+                continue
+            print(f"\n       Generated :")
+        
         print("-" * 75)
         
         

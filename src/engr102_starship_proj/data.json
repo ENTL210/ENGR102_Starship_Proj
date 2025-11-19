@@ -2,18 +2,18 @@
     "data": [
         {
             "season": "spring",
-            "power_consumptions": {
+            "power_consumptions_std": {
                 "min": 0.05,
                 "avg": 0.625,
                 "max": 1.83
             },
-            "solar_panel_power_consumption_cost": {
+            "power_consumptions_pv": {
                 "min": 0.00,
                 "avg": 0.05,
                 "max": 0.01
             },
             "station_power_input": 4.17,
-            "solar_power_input": {
+            "power_input_pv": {
                 "min": 1.2,
                 "avg": 2.5,
                 "max": 5
@@ -33,29 +33,35 @@
                 "avg": 5.00,
                 "max": 10.00
             }, 
-            "dry_mass_in_kg": {
+            "dry_mass_in_kg_std": {
                 "min" : 23.00,
                 "avg": 30.00,
-                "max": 37.00
+                "max": 35.00
+            },
+            "dry_mass_in_kg_pv": {
+                "min" : 23.20,
+                "avg": 30.80,
+                "max": 37.50
             }
+            
         },
         {
             "season": "summer",
-            "power_consumptions": {
+            "power_consumptions_std": {
                 "min": 0.05,
                 "avg": 0.625,
                 "max": 1.83
             },
-            "solar_panel_power_consumption_cost": {
+            "power_consumptions_pv": {
                 "min": 0.00,
                 "avg": 0.05,
                 "max": 0.01
             },
             "station_power_input": 4.17,
-            "solar_power_input": {
-                "min": 2.0,
-                "avg": 4.2,
-                "max": 7.0
+            "power_input_pv": {
+                "min": 1.2,
+                "avg": 2.5,
+                "max": 5
             },
             "temps_in_C": {
                 "min": 12.0,
@@ -72,27 +78,32 @@
                 "avg": 5.00,
                 "max": 10.00
             }, 
-            "dry_mass_in_kg": {
+            "dry_mass_in_kg_std": {
                 "min" : 23.00,
                 "avg": 30.00,
-                "max": 37.00
+                "max": 35.00
+            },
+            "dry_mass_in_kg_pv": {
+                "min" : 23.20,
+                "avg": 30.80,
+                "max": 37.50
             }
             
         },
         {
             "season": "fall",
-            "power_consumptions": {
+            "power_consumptions_std": {
                 "min": 0.05,
                 "avg": 0.625,
                 "max": 1.83
             },
-            "solar_panel_power_consumption_cost": {
+            "power_consumptions_pv": {
                 "min": 0.00,
                 "avg": 0.05,
                 "max": 0.01
             },
             "station_power_input": 4.17,
-            "solar_power_input": {
+            "power_input_pv": {
                 "min": 1.2,
                 "avg": 2.5,
                 "max": 5
@@ -112,26 +123,31 @@
                 "avg": 5.00,
                 "max": 10.00
             }, 
-            "dry_mass_in_kg": {
+            "dry_mass_in_kg_std": {
                 "min" : 23.00,
                 "avg": 30.00,
-                "max": 37.00
+                "max": 35.00
+            },
+            "dry_mass_in_kg_pv": {
+                "min" : 23.20,
+                "avg": 30.80,
+                "max": 37.50
             }
         },
         {
             "season": "winter",
-            "power_consumptions": {
+            "power_consumptions_std": {
                 "min": 0.05,
                 "avg": 0.625,
                 "max": 1.83
             },
-            "solar_panel_power_consumption_cost": {
+            "power_consumptions_pv": {
                 "min": 0.00,
                 "avg": 0.05,
                 "max": 0.01
             },
             "station_power_input": 4.17,
-            "solar_power_input": {
+            "power_input_pv": {
                 "min": 1.2,
                 "avg": 2.5,
                 "max": 5
@@ -151,10 +167,15 @@
                 "avg": 5.00,
                 "max": 10.00
             }, 
-            "dry_mass_in_kg": {
+            "dry_mass_in_kg_std": {
                 "min" : 23.00,
                 "avg": 30.00,
-                "max": 37.00
+                "max": 35.00
+            },
+            "dry_mass_in_kg_pv": {
+                "min" : 23.20,
+                "avg": 30.80,
+                "max": 37.50
             }
         }
     ]
