@@ -5,10 +5,29 @@ import random
 from openpyxl import Workbook
 import datetime
 
+
 def generate_answer_keys():
     print("-" * 75)
     print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
     
+def generate_random_nums(min, avg, max, counts):
+    # Initialize array of nums...
+    nums = []
+    
+    # Randomize numbers until reaching the target number of numbers...
+    while len(nums) < counts:
+        randomized_number = random.uniform(min, max)
+        nums.append(randomized_number)
+    
+    # Find average of the set of randomized numbers...
+    nums_average = sum(nums) / len(nums)
+    # Find the difference between the target average and the randomized average...
+    average_difference = round(avg - nums_average, 0) # Round to 0 deci points to add some noises to the dataset
+    # Adjusted randomized numbers to reach the approximate avg...
+    adjusted_nums = [num + average_difference for num in nums] 
+    
+    return adjusted_nums
+
 def generate_time_stamps():
     timestamps = []
     # Set time interval where data being collected (7:30 AM - 10:00 PM)
@@ -78,6 +97,8 @@ def generate_problem(export_directory, data):
                 print(f"{key.capitalize()}: {value}", end=" ")
             print(f")")
             
+            print("\n             Generating timestamp column...")
+            
             # Generating timestamp list...
             time_stamps = generate_time_stamps()
             
@@ -87,7 +108,6 @@ def generate_problem(export_directory, data):
             
             for index, value in enumerate(time_stamps, 1):
                 ws.cell(index + 1, time_stamps_column, value)
-            
             
 
             end_time = time.time()
