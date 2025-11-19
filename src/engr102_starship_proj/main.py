@@ -24,6 +24,8 @@ def generate_time_stamps():
         timestamps.append = f"{t}" # Converting datetime obj to str...
         t += delta # Add 5 minutes...
     
+    return timestamps
+    
 
 def generate_problem(export_directory, data):
     print("-" * 75) # seperator
@@ -57,6 +59,8 @@ def generate_problem(export_directory, data):
         print(f"\n       Generated Dataset Path: {making_dataset}")
         
         for key in dataset:
+            start_time = time.time()
+            
             if key == "season":
                 continue
             if key == "station_power_input":
@@ -67,11 +71,23 @@ def generate_problem(export_directory, data):
             wb = Workbook()
             ws = wb.active
             
+            # Generating (min, avg, max) of each data file...
             print(f"\n       Generating {key}.xlss...")
             print(f"\n            (", end=" ")
             for key,value in dataset[key].items():
                 print(f"{key.capitalize()}: {value}", end=" ")
             print(f")")
+            
+            # Generating timestamp list...
+            
+            
+            
+            
+            end_time = time.time()
+            # set elapsed time to ms and 2 deci points...
+            elapsed_time = round((end_time - start_time) * 1000, 3) 
+            # print out the elapsed time...
+            print(f"\n            {os.path.basename(wb_path)} has been generated ({elapsed_time}ms)") 
             
             
         
@@ -121,7 +137,7 @@ def get_user_options():
         print("         [1] Generate problems") # Generates 4 days of data..
         print("         [2] Quit Tool\n") # Quit tools
         print("-" * 75) # Seperator
-        selection = input("       Enter a menu option in the keyboard [1,2,3,4]: ")
+        selection = input("       Enter a menu option in the keyboard [1,2]: ")
         
         print("-" * 75)
         
