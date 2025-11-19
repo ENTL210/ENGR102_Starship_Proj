@@ -2,9 +2,14 @@ import os
 import time
 import json 
 
+def generate_answer_keys():
+    print("-" * 75)
+    print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
+
 def generate_problem(data):
     print("-" * 75) # seperator
     print((" " * 22) + "[1] Generating Problems" + (" " * 22))
+    
 
 def read_data_json():
     with open('data.json', 'r') as f:
@@ -83,7 +88,7 @@ def main():
     if user_selection == "1":
         generate_problem(data=data)
     elif user_selection == "2":
-        return
+        generate_answer_keys()
         
     
     
