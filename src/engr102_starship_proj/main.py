@@ -79,10 +79,17 @@ def generate_problem(export_directory, data):
             print(f")")
             
             # Generating timestamp list...
+            time_stamps = generate_time_stamps()
+            
+            # Generating timestamp column & label...
+            time_stamps_column = 1
+            ws.cell(1, 1, "Time (%HH:%MM:%SS)")
+            
+            for index, value in enumerate(time_stamps, 1):
+                ws.cell(index + 1, time_stamps_column, value)
             
             
-            
-            
+
             end_time = time.time()
             # set elapsed time to ms and 2 deci points...
             elapsed_time = round((end_time - start_time) * 1000, 3) 
