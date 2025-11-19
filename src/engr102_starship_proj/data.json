@@ -41,6 +41,18 @@
                 "avg": 5.00,
                 "max": 10.00
             }, 
+            "payload_volume_std": {
+                "unit" : "m^3",
+                "min" : 0.01,
+                "avg": 0.0412,
+                "max": 0.0435
+            },
+            "payload_volume_pv": {
+                "unit" : "m^3",
+                "min" : 0.01,
+                "avg": 0.0315,
+                "max": 0.0420
+            },
             "dry_mass_in_kg_std": {
                 "unit" : "Kg",
                 "min" : 23.00,
@@ -53,6 +65,7 @@
                 "avg": 30.80,
                 "max": 37.50
             }
+            
             
         },
         {
@@ -96,6 +109,18 @@
                 "avg": 5.00,
                 "max": 10.00
             }, 
+            "payload_volume_std": {
+                "unit" : "m^3",
+                "min" : 0.01,
+                "avg": 0.0412,
+                "max": 0.0435
+            },
+            "payload_volume_pv": {
+                "unit" : "m^3",
+                "min" : 0.01,
+                "avg": 0.0315,
+                "max": 0.0420
+            },
             "dry_mass_in_kg_std": {
                 "unit": "Kg",
                 "min" : 23.00,
@@ -151,6 +176,18 @@
                 "avg": 5.00,
                 "max": 10.00
             }, 
+            "payload_volume_std": {
+                "unit" : "m^3",
+                "min" : 0.01,
+                "avg": 0.0412,
+                "max": 0.0435
+            },
+            "payload_volume_pv": {
+                "unit" : "m^3",
+                "min" : 0.01,
+                "avg": 0.0315,
+                "max": 0.0420
+            },
             "dry_mass_in_kg_std": {
                 "unit": "Kg",
                 "min" : 23.00,
@@ -205,6 +242,18 @@
                 "avg": 5.00,
                 "max": 10.00
             }, 
+            "payload_volume_std": {
+                "unit" : "m^3",
+                "min" : 0.01,
+                "avg": 0.0412,
+                "max": 0.0435
+            },
+            "payload_volume_pv": {
+                "unit" : "m^3",
+                "min" : 0.01,
+                "avg": 0.0315,
+                "max": 0.0420
+            },
             "dry_mass_in_kg_std": {
                 "unit": "Kg",
                 "min" : 23.00,

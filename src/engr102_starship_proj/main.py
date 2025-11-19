@@ -3,6 +3,7 @@ import time
 import json 
 import random
 from openpyxl import Workbook, load_workbook
+from openpyxl.utils import get_column_letter
 import datetime
 
 
@@ -111,6 +112,7 @@ def generate_problem(export_directory, data):
             
             # Generating timestamp column & label...
             time_stamps_column = 1
+            ws.column_dimensions[get_column_letter(time_stamps_column)].width = 20
             ws.cell(1, 1, "Time (%HH:%MM:%SS)")
             
             for index, value in enumerate(time_stamps, 1):
@@ -123,6 +125,7 @@ def generate_problem(export_directory, data):
             
             # Generating value column & label...
             values_column = 2
+            ws.column_dimensions[get_column_letter(values_column)].width = 20
             ws.cell(1, 2, f"Values ({dataset[wb_basename]["unit"] if "unit" in dataset[wb_basename] else ""})")
             
             for index, value in enumerate(values, 1):
@@ -161,6 +164,7 @@ def generate_problem(export_directory, data):
             # Generating timestamp column & label...
             time_stamps_column = 1
             ws.cell(1, 1, "Time (%HH:%MM:%SS)")
+            ws.column_dimensions[get_column_letter(time_stamps_column)].width = 20
             
             for index, value in enumerate(time_stamps, 1):
                 ws.cell(index + 1, time_stamps_column, value)
@@ -169,6 +173,7 @@ def generate_problem(export_directory, data):
                 
             # Generating value column & label...
             values_column = 2
+            ws.column_dimensions[get_column_letter(values_column)].width = 20
             ws.cell(1, 2, f"Values ({dataset[basename]["unit"] if "unit" in dataset[basename] else ""})")
             
             # Set values columns to 0 initially...
@@ -291,8 +296,5 @@ def main():
     
     generate_problem(export_directory=export_path, data=data)
     
-    
-    
-
 if __name__ == "__main__":
     main()
