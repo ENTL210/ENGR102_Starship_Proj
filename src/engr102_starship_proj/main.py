@@ -1,5 +1,10 @@
 import os
+import time
 import json 
+
+def generate_problem(data):
+    print("-" * 75) # seperator
+    print((" " * 22) + "[1] Generating Problems" + (" " * 22))
 
 def read_data_json():
     with open('data.json', 'r') as f:
@@ -18,6 +23,8 @@ def get_folder_path():
 
         if confirmation == "1":
             if os.path.isdir(path):
+                print("\n       Path has been verified")
+                print("")
                 return path
             else: 
                 print("       Provided path is invalid. Please try again")
@@ -51,25 +58,38 @@ def get_user_options():
             return "2"
         elif selection == "3":
             return "3"
-        elif selection == "4":
-            return "4"
         else: 
             print("Invalid selection. Please choose one of the options from the menu")
             continue
 
 def main():
     # Get user selection...
-    user_selection = get_user_options() 
+    user_selection = get_user_options()
+    
+    if user_selection == "3":
+        print("-" * 75)
+        for i in range(0,3):
+            print(f"          Exiting program in {3-i}...") 
+            time.sleep(1)
+        print("-" * 75)
+        exit()
+    
     # Get export destination...
     folder_path = get_folder_path()
-    
-    
-    
     
     # Reading data.json
     data = read_data_json()
     
+    if user_selection == "1":
+        generate_problem(data=data)
+    elif user_selection == "2":
+        return
+        
     
+    
+    
+    
+        
         
     
 
