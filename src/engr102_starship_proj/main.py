@@ -1,46 +1,76 @@
 import os
 import json 
 
-folder_path = ""
-data = {}
-
 def read_data_json():
     with open('data.json', 'r') as f:
         return json.load(f)["data"]
 
 def get_folder_path():
-    # Print the initial greeting only once
-    print("Welcome to the ENGR102 Starship Problem Generator.")
-    print("-" * 45) # Separator
+    print((" " * 22) + "Selecting Export Destination" + (" " * 22))
+    print("-" * 75)
 
     # While loop until a valid path is returned...
     while True:
-        print("\nPlease provide a folder path where you would like to save the generated problem: ", end="")
-        path = input()
+        path = input("\n       Please provide a export destination: ")
 
-        print(f"\nProvided Path: {path}")
-        confirmation = input("\nIs this correct: (1) Yes (2) No: ")
+        print(f"\n       Provided Path: {path}")
+        confirmation = input("\n       Is this correct: (1) Yes (2) No: ")
 
         if confirmation == "1":
             if os.path.isdir(path):
-                print("\nPath confirmed and verified.")
-                return path 
-            else:
-                print(f"Error: '{path}' is not a valid directory. Please check and try again.")
+                return path
+            else: 
+                print("       Provided path is invalid. Please try again")
+                continue
         elif confirmation == '2':
-            print("Path rejected. Please try entering the correct path again.")
+            print("       Path rejected. Please try entering the correct path again.")
             continue
         else:
-            print("Invalid selection. Please enter '1' for Yes or '2' for No.")
+            print("       Invalid selection. Please enter '1' for Yes or '2' for No.")
+            
+def get_user_options():
+    
+    # While loop until users choose a valid option...
+    while True:
+        print("-" * 75) # Separator
+        # Print the initial greeting only once
+        print((" " * 10) + "Welcome to the ENGR102 Starship Problem Generator." + (" " * 10))
+        print("-" * 75) # Separator
+        print("\n       Options: ")
+        print("         [1] Generate problems") # Generates 4 days of data..
+        print("         [2] Generate answer keys") # Generates an answer key...
+        print("         [3] Quit Tool\n") # Quit tools
+        print("-" * 75) # Seperator
+        selection = input("       Enter a menu option in the keyboard [1,2,3,4]: ")
+        
+        print("-" * 75)
+        
+        if selection == "1":
+            return "1"
+        elif selection == "2":
+            return "2"
+        elif selection == "3":
+            return "3"
+        elif selection == "4":
+            return "4"
+        else: 
+            print("Invalid selection. Please choose one of the options from the menu")
+            continue
 
 def main():
-    # Greeting & request for folder path...
-    # folder_path = get_folder_path()
-
+    # Get user selection...
+    user_selection = get_user_options() 
+    # Get export destination...
+    folder_path = get_folder_path()
+    
+    
+    
+    
     # Reading data.json
     data = read_data_json()
     
     
+        
     
 
 
