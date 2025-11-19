@@ -40,7 +40,7 @@ def generate_time_stamps():
     # Inititalize while loop with t...
     t = start
     while t <= end:
-        timestamps.append = f"{t}" # Converting datetime obj to str...
+        timestamps.append(f"{t.strftime('%H:%M:%S')}") # Converting datetime obj to str...
         t += delta # Add 5 minutes...
     
     return timestamps
@@ -86,6 +86,7 @@ def generate_problem(export_directory, data):
                 continue
             
             # Initializing workbook...
+            wb_basename = key
             wb_path = os.path.join(os.path.basename(making_dataset), f"{key}.xlsx")
             wb = Workbook()
             ws = wb.active
@@ -97,7 +98,7 @@ def generate_problem(export_directory, data):
                 print(f"{key.capitalize()}: {value}", end=" ")
             print(f")")
             
-            print("\n             Generating timestamp column...")
+            print("\n            Generating timestamp column...")
             
             # Generating timestamp list...
             time_stamps = generate_time_stamps()
@@ -108,13 +109,26 @@ def generate_problem(export_directory, data):
             
             for index, value in enumerate(time_stamps, 1):
                 ws.cell(index + 1, time_stamps_column, value)
+                
+            print("\n            Generating values column...")
+                
+            # Generating randomized numbers list...
+            values = generate_random_nums(dataset[wb_basename]["min"], dataset[wb_basename]["avg"], dataset[wb_basename]["max"], len(time_stamps))
             
+            # Generating value column & label...
+            values_column = 2
+            ws.cell(1, 2, f"Values ({dataset[wb_basename]["unit"] if "unit" in dataset[wb_basename] else ""})")
+            
+            for index, value in enumerate(values, 1):
+                ws.cell(index + 1, values_column, value)
+                
+            wb.save(wb_path)
 
             end_time = time.time()
             # set elapsed time to ms and 2 deci points...
             elapsed_time = round((end_time - start_time) * 1000, 3) 
             # print out the elapsed time...
-            print(f"\n            {os.path.basename(wb_path)} has been generated ({elapsed_time}ms)") 
+            print(f"\n            {wb_basename}.xlss has been generated ({elapsed_time}ms)") 
             
             
         
