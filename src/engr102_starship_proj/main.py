@@ -48,11 +48,14 @@ def generate_problem(export_directory, data):
             # Initializing workbook...
             wb_path = os.path.join(os.path.basename(making_dataset), f"{key}.xlsx")
             wb = Workbook()
+            ws = wb.active
             
-            print(f"\n       Generating {key}.xlss")
+            print(f"\n       Generating {key}.xlss...")
+            print(f"\n            (", end=" ")
             for key,value in dataset[key].items():
-                print(f"            {key.capitalize()}: {value}")
-                
+                print(f"{key.capitalize()}: {value}", end=" ")
+            print(f")")
+            
             
         
         print("-" * 75)
