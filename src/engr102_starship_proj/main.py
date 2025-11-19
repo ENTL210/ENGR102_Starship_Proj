@@ -1,27 +1,56 @@
 import os
 import time
 import json 
+import random
 
 def generate_answer_keys():
     print("-" * 75)
     print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
 
-def generate_problem(data):
+def generate_problem(export_directory, data):
     print("-" * 75) # seperator
-    print((" " * 22) + "[1] Generating Problems" + (" " * 22))
+    print((" " * 25) + "[1] Generating Problems" + (" " * 25))
+    print("-" * 75) # seperator
+    
+    nums_of_datasets = len(data)
+    
+    for dataset in data:
+        # The directory to the dataset that in progress of making...
+        making_dataset = None
+        
+        while True:
+            # Base on numbers of datasets in json file, random the dataset index...
+            dataset_index = random.randint(1,4)
+            # base on randomized dataset index, generate a folder path to that dataset...
+            dataset_path = os.path.join(export_directory, f"Dataset {dataset_index}")
+            
+            # if the dataset directory is already exists, randomize another index and path...
+            if os.path.exists(dataset_path):
+                continue
+            else:
+                # if the dataset directory chosen is not exists...
+                os.mkdir(dataset_path)
+                making_dataset = dataset_path
+                break
+        
+        print((" " * 25) + f"Generating {os.path.basename(making_dataset)}..." + (" " * 25))
+        print("-" * 75)
     
 
 def read_data_json():
     with open('data.json', 'r') as f:
         return json.load(f)["data"]
 
-def get_folder_path():
+def get_folder_path(test_path="/Users/edwardl210/Documents/Coding/ENGR102_Starship_Proj/src/engr102_starship_proj"):
     print((" " * 22) + "Selecting Export Destination" + (" " * 22))
     print("-" * 75)
 
     # While loop until a valid path is returned...
     while True:
-        path = input("\n       Please provide a export destination: ")
+        if test_path:
+            path = test_path
+        else:
+            path = input("\n       Please provide a export destination: ")
 
         print(f"\n       Provided Path: {path}")
         confirmation = input("\n       Is this correct: (1) Yes (2) No: ")
@@ -80,30 +109,15 @@ def main():
         exit()
     
     # Get export destination...
-    folder_path = get_folder_path()
+    export_path = get_folder_path()
     
     # Reading data.json
     data = read_data_json()
     
     if user_selection == "1":
-        generate_problem(data=data)
+        generate_problem(export_directory=export_path, data=data)
     elif user_selection == "2":
         generate_answer_keys()
-        
-    
-    
-    
-    
-        
-        
-    
-
-
-
-
-    
-    
-    
 
 if __name__ == "__main__":
     main()
