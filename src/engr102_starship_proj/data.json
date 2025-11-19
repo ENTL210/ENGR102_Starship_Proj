@@ -3,22 +3,29 @@
         {
             "season": "spring",
             "power_consumptions_std": {
+                "unit": "Watt-minutes",
                 "min": 0.05,
                 "avg": 0.625,
                 "max": 1.83
             },
             "power_consumptions_pv": {
+                "unit": "Watt-minutes",
                 "min": 0.00,
                 "avg": 0.05,
                 "max": 0.01
             },
-            "station_power_input": 4.17,
+            "station_power_input": {
+                "unit": "Watt-minutes",
+                "value": 4.17
+            },
             "power_input_pv": {
+                "unit": "Watt-minutes",
                 "min": 1.2,
                 "avg": 2.5,
                 "max": 5
             },
             "temps_in_C": {
+                "unit": "C",
                 "min": 4.0,
                 "avg": 11.0,
                 "max": 17.0
@@ -29,16 +36,19 @@
                 "max": 6.0
             },
             "payload_in_kg": {
+                "unit" : "Kg",
                 "min" : 0.00,
                 "avg": 5.00,
                 "max": 10.00
             }, 
             "dry_mass_in_kg_std": {
+                "unit" : "Kg",
                 "min" : 23.00,
                 "avg": 30.00,
                 "max": 35.00
             },
             "dry_mass_in_kg_pv": {
+                "unit" : "Kg",
                 "min" : 23.20,
                 "avg": 30.80,
                 "max": 37.50
@@ -48,22 +58,29 @@
         {
             "season": "summer",
             "power_consumptions_std": {
+                "unit": "Watt-minutes",
                 "min": 0.05,
                 "avg": 0.625,
                 "max": 1.83
             },
             "power_consumptions_pv": {
+                "unit": "Watt-minutes",
                 "min": 0.00,
                 "avg": 0.05,
                 "max": 0.01
             },
-            "station_power_input": 4.17,
+            "station_power_input": {
+                "unit": "Watt-minutes",
+                "value": 4.17
+            },
             "power_input_pv": {
+                "unit": "Watt-minutes",
                 "min": 1.2,
                 "avg": 2.5,
                 "max": 5
             },
             "temps_in_C": {
+                "unit": "C",
                 "min": 12.0,
                 "avg": 21.0,
                 "max": 33.0
@@ -74,16 +91,19 @@
                 "max": 10
             },
             "payload_in_kg": {
+                "unit": "Kg",
                 "min" : 0.00,
                 "avg": 5.00,
                 "max": 10.00
             }, 
             "dry_mass_in_kg_std": {
+                "unit": "Kg",
                 "min" : 23.00,
                 "avg": 30.00,
                 "max": 35.00
             },
             "dry_mass_in_kg_pv": {
+                "unit": "Kg",
                 "min" : 23.20,
                 "avg": 30.80,
                 "max": 37.50
@@ -93,22 +113,29 @@
         {
             "season": "fall",
             "power_consumptions_std": {
+                "unit": "Watt-minutes",
                 "min": 0.05,
                 "avg": 0.625,
                 "max": 1.83
             },
             "power_consumptions_pv": {
+                "unit": "Watt-minutes",
                 "min": 0.00,
                 "avg": 0.05,
                 "max": 0.01
             },
-            "station_power_input": 4.17,
+            "station_power_input": {
+                "unit": "Watt-minutes",
+                "value": 4.17
+            },
             "power_input_pv": {
+                "unit": "Watt-minutes",
                 "min": 1.2,
                 "avg": 2.5,
                 "max": 5
             },
             "temps_in_C": {
+                "unit": "C",
                 "min": 7.0,
                 "avg": 14.0,
                 "max": 18.0
@@ -119,16 +146,19 @@
                 "max": 4.4
             },
             "payload_in_kg": {
+                "unit": "Kg",
                 "min" : 0.00,
                 "avg": 5.00,
                 "max": 10.00
             }, 
             "dry_mass_in_kg_std": {
+                "unit": "Kg",
                 "min" : 23.00,
                 "avg": 30.00,
                 "max": 35.00
             },
             "dry_mass_in_kg_pv": {
+                "unit": "Kg",
                 "min" : 23.20,
                 "avg": 30.80,
                 "max": 37.50
@@ -137,22 +167,29 @@
         {
             "season": "winter",
             "power_consumptions_std": {
+                "unit": "Watt-minutes",
                 "min": 0.05,
                 "avg": 0.625,
                 "max": 1.83
             },
             "power_consumptions_pv": {
+                "unit": "Watt-minutes",
                 "min": 0.00,
                 "avg": 0.05,
                 "max": 0.01
             },
-            "station_power_input": 4.17,
+            "station_power_input": {
+                "unit": "Watt-minutes",
+                "value": 4.17
+            },
             "power_input_pv": {
+                "unit": "Watt-minutes",
                 "min": 1.2,
                 "avg": 2.5,
                 "max": 5
             },
             "temps_in_C": {
+                "unit": "C",
                 "min": 2.0,
                 "avg": 5.0,
                 "max": 9.0
@@ -163,16 +200,19 @@
                 "max": 1.9
             },
             "payload_in_kg": {
+                "unit": "Kg",
                 "min" : 0.00,
                 "avg": 5.00,
                 "max": 10.00
             }, 
             "dry_mass_in_kg_std": {
+                "unit": "Kg",
                 "min" : 23.00,
                 "avg": 30.00,
                 "max": 35.00
             },
             "dry_mass_in_kg_pv": {
+                "unit": "Kg",
                 "min" : 23.20,
                 "avg": 30.80,
                 "max": 37.50
