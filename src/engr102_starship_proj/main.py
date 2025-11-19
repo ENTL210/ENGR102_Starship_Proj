@@ -35,6 +35,8 @@ def generate_problem(export_directory, data):
         
         print((" " * 25) + f"Generating {os.path.basename(making_dataset)}..." + (" " * 25))
         print("-" * 75)
+        
+        
     
 
 def read_data_json():
@@ -79,8 +81,7 @@ def get_user_options():
         print("-" * 75) # Separator
         print("\n       Options: ")
         print("         [1] Generate problems") # Generates 4 days of data..
-        print("         [2] Generate answer keys") # Generates an answer key...
-        print("         [3] Quit Tool\n") # Quit tools
+        print("         [2] Quit Tool\n") # Quit tools
         print("-" * 75) # Seperator
         selection = input("       Enter a menu option in the keyboard [1,2,3,4]: ")
         
@@ -90,8 +91,6 @@ def get_user_options():
             return "1"
         elif selection == "2":
             return "2"
-        elif selection == "3":
-            return "3"
         else: 
             print("Invalid selection. Please choose one of the options from the menu")
             continue
@@ -100,7 +99,7 @@ def main():
     # Get user selection...
     user_selection = get_user_options()
     
-    if user_selection == "3":
+    if user_selection == "2":
         print("-" * 75)
         for i in range(0,3):
             print(f"          Exiting program in {3-i}...") 
@@ -114,10 +113,7 @@ def main():
     # Reading data.json
     data = read_data_json()
     
-    if user_selection == "1":
-        generate_problem(export_directory=export_path, data=data)
-    elif user_selection == "2":
-        generate_answer_keys()
+    generate_problem(export_directory=export_path, data=data)
 
 if __name__ == "__main__":
     main()
