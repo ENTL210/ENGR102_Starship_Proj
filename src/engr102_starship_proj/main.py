@@ -3,10 +3,26 @@ import time
 import json 
 import random
 from openpyxl import Workbook
+import datetime
 
 def generate_answer_keys():
     print("-" * 75)
     print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
+    
+def generate_time_stamps():
+    # Set time interval where data being collected (7:30 AM - 10:00 PM)
+    start = datetime.datetime.strptime('7:30:00', '%H:%M:%S')
+    end = datetime.datetime.strptime('22:00:00', '%H:%M:%S')
+    
+    # Set delta between point of collecting...
+    delta = datetime.timedelta(minutes=5)
+    
+    # Inititalize while loop with t...
+    t = start
+    while t <= end:
+        print(t.strftime('%H:%M:%S'))
+        t += delta
+    
 
 def generate_problem(export_directory, data):
     print("-" * 75) # seperator
@@ -58,10 +74,7 @@ def generate_problem(export_directory, data):
             
             
         
-        print("-" * 75)
-        
-        
-    
+        print("-" * 75)        
 
 def read_data_json():
     with open('data.json', 'r') as f:
@@ -138,6 +151,8 @@ def main():
     data = read_data_json()
     
     generate_problem(export_directory=export_path, data=data)
+    
+    
 
 if __name__ == "__main__":
     main()
