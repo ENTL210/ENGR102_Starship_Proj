@@ -9,9 +9,6 @@ def generate_answer_keys():
     print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
 
 def generate_problem(export_directory, data):
-    # Initialize openpyxl Wb...
-    wb = Workbook()
-    
     print("-" * 75) # seperator
     print((" " * 25) + "[1] Generating Problems" + (" " * 25))
     print("-" * 75) # seperator
@@ -45,7 +42,18 @@ def generate_problem(export_directory, data):
         for key in dataset:
             if key == "season":
                 continue
-            print(f"\n       Generated :")
+            if key == "station_power_input":
+                continue
+            
+            # Initializing workbook...
+            wb_path = os.path.join(os.path.basename(making_dataset), f"{key}.xlsx")
+            wb = Workbook()
+            
+            print(f"\n       Generating {key}.xlss")
+            for key,value in dataset[key].items():
+                print(f"            {key.capitalize()}: {value}")
+                
+            
         
         print("-" * 75)
         
