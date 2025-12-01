@@ -14,12 +14,17 @@ def generate_answer_keys(export_directory):
     
     path = Path(export_directory)
     datasets_count = 0
+    result = []
     
-    # Check if there is an dataset
+    # Getting numbers of datapoints...
+    datapoint_counts = len(generate_time_stamps())
+    
+    # Check if there is an dataset...
     for item in path.iterdir():
         if item.is_dir() and "Dataset" in item.name:
             datasets_count += 1
     
+    # If there is no dataset...
     if datasets_count == 0:
         print("\n       There is no dataset in this directory.")
         print("\n       An answer key can't be generated. Exiting in 3 seconds...")
@@ -29,8 +34,65 @@ def generate_answer_keys(export_directory):
             time.sleep(1)
         print("-" * 75)
         exit()
-    else:
+    else: 
         print(f"\n      Numbers of datasets found: {datasets_count}")
+        print("\n      Begin to loop through each dataset...")
+    
+    for item in path.iterdir():
+        if item.is_dir() and "Dataset" in item.name:
+            print(f"\n      {item.name}")
+            print(f"\n           Counts of data points: {datapoint_counts}")
+            
+            # Calculating avg and max of temperature...
+            temperature_file_name = "temps_in_C.xlsx"
+            temperature_file_path = os.path.join(item, temperature_file_name)
+            print(f"\n           Calculating avg & max temperatures:")
+            
+            # Loading the workbook...
+            wb = load_workbook(temperature_file_path)
+            ws = wb.active
+            temperature_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                temperature_values.append(cell_value)
+            avg_temperature_value = round(sum(temperature_values) / len(temperature_values), 2)
+            max_temperature = round(max(temperature_values), 2)
+            print(f"              Avg Temperature in C: {avg_temperature_value}°C")
+            print(f"              Max Temperature in C: {max_temperature}°C")
+            
+            # Sum standard power input...
+            standard_power_input_file_name = "power_input_std.xlsx"
+            standard_power_input_file_path = os.path.join(item, standard_power_input_file_name)
+            print(f"\n           Summing the total power input of the standard model:")
+            # Loading the workbook...
+            wb = load_workbook(standard_power_input_file_path)
+            ws = wb.active
+            standard_power_input_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                standard_power_input_values.append(cell_value)
+            sum_of_standard_power_input = round(sum(standard_power_input_values), 2)
+            print(f"              Sum of Power Input of the Standard Model: {sum_of_standard_power_input} Watts-Minutes")
+            
+            # Sum PV power input...
+            pv_power_input_file_name = "power_input_pv.xlsx"
+            pv_power_input_file_path = os.path.join(item, pv_power_input_file_name)
+            print(f"\n           Summing the total power input of the proposed model:")
+            # Loading the workbook...
+            wb = load_workbook(pv_power_input_file_path)
+            ws = wb.active
+            pv_power_input_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                pv_power_input_values.append(cell_value)
+            sum_of_pv_power_input = round(sum(pv_power_input_values), 2)
+            print(f"              Sum of Power Input of the Proposed Model: {sum_of_pv_power_input} Watts-Minutes")
+            
+            
+            
+            
+            
+            
         
                     
     
