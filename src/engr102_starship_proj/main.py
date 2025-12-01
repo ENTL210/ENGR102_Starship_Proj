@@ -4,12 +4,36 @@ import json
 import random
 from openpyxl import Workbook, load_workbook
 from openpyxl.utils import get_column_letter
+from pathlib import Path
 import datetime
 
 
-def generate_answer_keys():
+def generate_answer_keys(export_directory):
     print("-" * 75)
     print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
+    
+    path = Path(export_directory)
+    datasets_count = 0
+    
+    # Check if there is an dataset
+    for item in path.iterdir():
+        if item.is_dir() and "Dataset" in item.name:
+            datasets_count += 1
+    
+    if datasets_count == 0:
+        print("\n       There is no dataset in this directory.")
+        print("\n       An answer key can't be generated. Exiting in 3 seconds...")
+        print("-" * 75)
+        for i in range(0,3):
+            print(f"          Exiting program in {3-i}...") 
+            time.sleep(1)
+        print("-" * 75)
+        exit()
+    else:
+        print(f"\n      Numbers of datasets found: {datasets_count}")
+        
+                    
+    
     
 def generate_random_nums(min, avg, max, counts):
     # Initialize array of nums...
@@ -260,10 +284,11 @@ def get_user_options():
         print((" " * 10) + "Welcome to the ENGR102 Starship Problem Generator." + (" " * 10))
         print("-" * 75) # Separator
         print("\n       Options: ")
-        print("         [1] Generate problems") # Generates 4 days of data..
-        print("         [2] Quit Tool\n") # Quit tools
+        print("         [1] Generate Problems") # Generates 4 days of data..
+        print("         [2] Generate Answers Key") # Generates 4 days of data..
+        print("         [3] Quit Tool\n") # Quit tools
         print("-" * 75) # Seperator
-        selection = input("       Enter a menu option in the keyboard [1,2]: ")
+        selection = input("       Enter a menu option in the keyboard [1,2,3]: ")
         
         print("-" * 75)
         
@@ -271,6 +296,8 @@ def get_user_options():
             return "1"
         elif selection == "2":
             return "2"
+        elif selection == "3":
+            return "3"
         else: 
             print("Invalid selection. Please choose one of the options from the menu")
             continue
@@ -279,7 +306,7 @@ def main():
     # Get user selection...
     user_selection = get_user_options()
     
-    if user_selection == "2":
+    if user_selection == "3":
         print("-" * 75)
         for i in range(0,3):
             print(f"          Exiting program in {3-i}...") 
@@ -287,14 +314,21 @@ def main():
         print("-" * 75)
         exit()
     
-    # Get export destination...
-    
-    export_path = get_folder_path()
-    
     # Reading data.json
     data = read_data_json()
     
-    generate_problem(export_directory=export_path, data=data)
+    if user_selection == "1":
+        # Get export destination
+        export_path = get_folder_path()
+        generate_problem(export_directory=export_path, data=data)
+        
+    if user_selection == "2":
+        # Get the location of the datasets
+        export_path = get_folder_path()
+        generate_answer_keys(export_directory=export_path)
+    
+    
+    
     
 if __name__ == "__main__":
     main()
