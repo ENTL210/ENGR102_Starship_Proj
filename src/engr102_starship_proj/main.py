@@ -11,6 +11,7 @@ import datetime
 def generate_answer_keys(export_directory):
     print("-" * 75)
     print((" " * 22) + "[2] Generating Answer Keys" + (" " * 22))
+    print("-" * 75)
     
     path = Path(export_directory)
     datasets_count = 0
@@ -47,7 +48,6 @@ def generate_answer_keys(export_directory):
             temperature_file_name = "temps_in_C.xlsx"
             temperature_file_path = os.path.join(item, temperature_file_name)
             print(f"\n           Calculating avg & max temperatures:")
-            
             # Loading the workbook...
             wb = load_workbook(temperature_file_path)
             ws = wb.active
@@ -60,10 +60,26 @@ def generate_answer_keys(export_directory):
             print(f"              Avg Temperature in C: {avg_temperature_value}°C")
             print(f"              Max Temperature in C: {max_temperature}°C")
             
+            # Calculating avg and max of UV index...
+            uv_file_name = "uv_index.xlsx"
+            uv_file_path = os.path.join(item, uv_file_name)
+            print(f"\n           Calculating avg & max UV:")
+            # Loading the workbook...
+            wb = load_workbook(uv_file_path)
+            ws = wb.active
+            uv_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                uv_values.append(cell_value)
+            avg_uv_values = round(sum(uv_values) / len(uv_values), 2)
+            max_uv_index = round(max(uv_values), 2)
+            print(f"              Avg UV Index: {avg_uv_values}")
+            print(f"              Max UV Index: {max_uv_index}")
+            
             # Sum standard power input...
             standard_power_input_file_name = "power_input_std.xlsx"
             standard_power_input_file_path = os.path.join(item, standard_power_input_file_name)
-            print(f"\n           Summing the total power input of the standard model:")
+            print(f"\n           Summing the Total Power the Standard Model Received:")
             # Loading the workbook...
             wb = load_workbook(standard_power_input_file_path)
             ws = wb.active
@@ -72,12 +88,12 @@ def generate_answer_keys(export_directory):
                 cell_value = ws.cell(row_num, 2).value
                 standard_power_input_values.append(cell_value)
             sum_of_standard_power_input = round(sum(standard_power_input_values), 2)
-            print(f"              Sum of Power Input of the Standard Model: {sum_of_standard_power_input} Watts-Minutes")
+            print(f"              Sum of the Power the Standard Model Received: {sum_of_standard_power_input} Watts")
             
             # Sum PV power input...
             pv_power_input_file_name = "power_input_pv.xlsx"
             pv_power_input_file_path = os.path.join(item, pv_power_input_file_name)
-            print(f"\n           Summing the total power input of the proposed model:")
+            print(f"\n           Summing the Total Power Proposed Model received:")
             # Loading the workbook...
             wb = load_workbook(pv_power_input_file_path)
             ws = wb.active
@@ -86,8 +102,46 @@ def generate_answer_keys(export_directory):
                 cell_value = ws.cell(row_num, 2).value
                 pv_power_input_values.append(cell_value)
             sum_of_pv_power_input = round(sum(pv_power_input_values), 2)
-            print(f"              Sum of Power Input of the Proposed Model: {sum_of_pv_power_input} Watts-Minutes")
+            print(f"              Sum of the Power Proposed Model received: {sum_of_pv_power_input} Watts")
             
+            # Sum standard power consumptions...
+            standard_power_consumptions_file_name = "power_consumptions_std.xlsx"
+            standard_power_consumptions_file_path = os.path.join(item, standard_power_consumptions_file_name)
+            print(f"\n           Summing the Power the Standard Model consumed:")
+            # Loading the workbook...
+            wb = load_workbook(standard_power_consumptions_file_path)
+            ws = wb.active
+            standard_power_consumptions_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                standard_power_consumptions_values.append(cell_value)
+            sum_of_standard_power_consumptons = round(sum(standard_power_consumptions_values), 2)
+            print(f"              Sum of the Power the Standard Model consumed: {sum_of_standard_power_consumptons} Watts")
+            
+            # Sum PV power consumptions...
+            pv_power_consumptions_file_name = "power_consumptions_pv.xlsx"
+            pv_power_consumptions_file_path = os.path.join(item, pv_power_consumptions_file_name)
+            print(f"\n           Summing the Power the Standard Model consumed:")
+            # Loading the workbook...
+            wb = load_workbook(pv_power_consumptions_file_path)
+            ws = wb.active
+            pv_power_consumptions_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                pv_power_consumptions_values.append(cell_value)
+            sum_of_pv_power_consumptons = round(sum(pv_power_consumptions_values), 2)
+            print(f"              Sum of the Power the Proposed Model consumed: {sum_of_pv_power_consumptons} Watts")
+            
+            # Calculating the cost of power consumptions...
+            print(f"\n           Calculating the cost of power consumptions...")
+            pv_avg_power_consumptions = sum(pv_power_consumptions_values) / len(pv_power_consumptions_values)
+            standard_avg_power_consumptions = sum(standard_power_consumptions_values) / len(standard_power_consumptions_values)
+            cost_of_power_consumptions = round(pv_avg_power_consumptions - standard_avg_power_consumptions, 2)
+            print(f"              The Additional Power Consumed by the Proposed Model: {cost_of_power_consumptions} Watts")
+            
+            # Calculating the cost in payload volume
+            print(f"\n           Calculating the cost in payload volume")
+            standard_payload_volume_file_name = "payload_volume_std.xlsx"
             
             
             
