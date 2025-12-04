@@ -4,15 +4,15 @@
             "season": "spring",
             "power_consumptions_std": {
                 "unit": "Watt",
-                "min": 0.05,
-                "avg": 0.625,
-                "max": 1.83
+                "min": 0.07,
+                "avg": 1.8,
+                "max": 3.2
             },
             "power_consumptions_pv": {
                 "unit": "Watt",
-                "min": 0.058,
-                "avg": 0.780,
-                "max": 2.2
+                "min": 0.082,
+                "avg": 2.0,
+                "max": 3.6
             },
             "station_power_input": {
                 "unit": "Watt",
@@ -20,9 +20,9 @@
             },
             "power_input_pv": {
                 "unit": "Watt",
-                "min": 1.2,
-                "avg": 2.5,
-                "max": 5
+                "min": 0.8,
+                "avg": 2.3,
+                "max": 4.12
             },
             "temps_in_C": {
                 "unit": "C",
@@ -78,15 +78,15 @@
             "season": "summer",
             "power_consumptions_std": {
                 "unit": "Watt",
-                "min": 0.05,
-                "avg": 0.625,
-                "max": 1.83
+                "min": 0.07,
+                "avg": 1.8,
+                "max": 3.2
             },
             "power_consumptions_pv": {
                 "unit": "Watt",
-                "min": 0.058,
-                "avg": 0.780,
-                "max": 2.2
+                "min": 0.082,
+                "avg": 2.0,
+                "max": 3.6
             },
             "station_power_input": {
                 "unit": "Watt",
@@ -95,8 +95,8 @@
             "power_input_pv": {
                 "unit": "Watt",
                 "min": 1.2,
-                "avg": 2.5,
-                "max": 5
+                "avg": 4.2,
+                "max": 11.2
             },
             "temps_in_C": {
                 "unit": "C",
@@ -151,15 +151,15 @@
             "season": "fall",
             "power_consumptions_std": {
                 "unit": "Watt",
-                "min": 0.05,
-                "avg": 0.625,
-                "max": 1.83
+                "min": 0.07,
+                "avg": 1.8,
+                "max": 3.2
             },
             "power_consumptions_pv": {
                 "unit": "Watt",
-                "min": 0.058,
-                "avg": 0.780,
-                "max": 2.2
+                "min": 0.082,
+                "avg": 2.0,
+                "max": 3.6
             },
             "station_power_input": {
                 "unit": "Watt",
@@ -168,8 +168,8 @@
             "power_input_pv": {
                 "unit": "Watt",
                 "min": 1.2,
-                "avg": 2.5,
-                "max": 5
+                "avg": 2.6,
+                "max": 4.18
             },
             "temps_in_C": {
                 "unit": "C",
@@ -223,15 +223,15 @@
             "season": "winter",
             "power_consumptions_std": {
                 "unit": "Watt",
-                "min": 0.05,
-                "avg": 0.625,
-                "max": 1.83
+                "min": 0.07,
+                "avg": 1.8,
+                "max": 3.2
             },
             "power_consumptions_pv": {
                 "unit": "Watt",
-                "min": 0.058,
-                "avg": 0.780,
-                "max": 2.2
+                "min": 0.082,
+                "avg": 2.0,
+                "max": 3.6
             },
             "station_power_input": {
                 "unit": "Watt",
@@ -239,9 +239,9 @@
             },
             "power_input_pv": {
                 "unit": "Watt",
-                "min": 1.2,
-                "avg": 2.5,
-                "max": 5
+                "min": 0.02,
+                "avg": 1.2,
+                "max": 2
             },
             "temps_in_C": {
                 "unit": "C",

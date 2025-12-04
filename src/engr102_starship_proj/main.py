@@ -205,8 +205,42 @@ def generate_answer_keys(export_directory):
             
             result.append(dataset_key)
             
+        # Sorting the result array...
+        result = sorted(result, key=lambda item: item['name'])
+
+        # Gnerating the answer key txt file...
         print(f"\n      Generating engr102_starship_answers_key.txt...")
-        answer_key_export_path = os.path.join(export_directory, "Answers Key")
+        # Generating the answer folder...
+        os.makedirs(os.path.join(export_directory, "Answers Key"), exist_ok=True)
+        # Generating the answer key path...
+        answer_key_export_path = os.path.join(export_directory, "Answers Key", "engr102_starship_answers_key.txt")
+        # Begin to write the answer key txt file...
+        with open(answer_key_export_path, 'w') as f: 
+            f.write("ENGR 102 Starship Problem Answer Key")
+            f.write("\n")
+            for dataset_result in result:
+                f.write(f"  {dataset_result['name']}")
+                f.write("\n")
+                f.write(f"\n      Avg Temperature in C: {dataset_result["avg_temp"]}°C")
+                f.write(f"\n      Max Temperature in C: {dataset_result["max_temp"]}°C")
+                f.write("\n")
+                f.write(f"\n      Avg UV Index: {dataset_result['avg_uv']}")
+                f.write(f"\n      Max UV Index: {dataset_result['max_uv']}")
+                f.write("\n")
+                f.write(f"\n      Sum of the Power the Standard Model Received: {dataset_result['total_std_power_input']}")
+                f.write(f"\n      Sum of the Power the Standard Model consumed: {dataset_result['total_std_power_consumed']}")
+                f.write("\n")
+                f.write(f"\n      Sum of the Power the Proposed Model Received: {dataset_result['total_pv_power_input']}")
+                f.write(f"\n      Sum of the Power the Proposed Model consumed: {dataset_result['total_pv_power_consumed']}")
+                f.write("\n")
+                f.write(f"\n      The Additional Power Consumed by the Proposed Model: {dataset_result['cost_in_power']} Watts")
+                f.write(f"\n      The Proposed Model reduced the payload volume (m^3) by {dataset_result['cost_in_payload_volume']}%")
+                f.write(f"\n      The Proposed Model reduced the payload capacity (kg) by {dataset_result['cost_in_payload_mass']}%")
+                
+                f.write("\n")
+                f.write("\n")
+            
+        
             
             
             
@@ -388,7 +422,7 @@ def generate_problem(export_directory, data):
                 current_row += 1
                 
             # Numbers of times robo went to the charging stations...
-            total_nums_of_charging_charging_intervals = random.randint(20, len(time_stamps) // 3)
+            total_nums_of_charging_charging_intervals = random.randint(50, len(time_stamps) // 2)
 
             # When robot first charge of the day...
             start_interval = 0
