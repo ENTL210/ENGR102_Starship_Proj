@@ -239,17 +239,7 @@ def generate_answer_keys(export_directory):
                 
                 f.write("\n")
                 f.write("\n")
-            
-        
-            
-            
-            
-            
-            
-        
-                    
-    
-    
+
 def generate_random_nums(min, avg, max, counts):
     # Initialize array of nums...
     nums = []
@@ -285,7 +275,6 @@ def generate_time_stamps():
     
     return timestamps
     
-
 def generate_problem(export_directory, data):
     print("-" * 75) # seperator
     print((" " * 25) + "[1] Generating Problems" + (" " * 25))
@@ -451,8 +440,8 @@ def generate_problem(export_directory, data):
             elapsed_time = round((end_time - start_time) * 1000, 3) 
             # print out the elapsed time...
             print(f"\n            {wb_basename}.xlsx has been generated ({elapsed_time}ms)") 
-            
-        print("-" * 75)        
+        
+        print("-" * 75)
 
 def read_data_json():
     with open('data.json', 'r') as f:
@@ -518,29 +507,33 @@ def get_user_options():
             continue
 
 def main():
-    # Get user selection...
-    user_selection = get_user_options()
     
-    if user_selection == "3":
-        print("-" * 75)
-        for i in range(0,3):
-            print(f"          Exiting program in {3-i}...") 
-            time.sleep(1)
-        print("-" * 75)
-        exit()
+    while True:
+        # Get user selection...
+        user_selection = get_user_options()
+        if user_selection == "3":
+            break
     
-    # Reading data.json
-    data = read_data_json()
-    
-    if user_selection == "1":
-        # Get export destination
-        export_path = get_folder_path()
-        generate_problem(export_directory=export_path, data=data)
+        # Reading data.json
+        data = read_data_json()
         
-    if user_selection == "2":
-        # Get the location of the datasets
-        export_path = get_folder_path()
-        generate_answer_keys(export_directory=export_path)
+        if user_selection == "1":
+            # Get export destination
+            export_path = get_folder_path()
+            generate_problem(export_directory=export_path, data=data)
+            
+        if user_selection == "2":
+            # Get the location of the datasets
+            export_path = get_folder_path()
+            generate_answer_keys(export_directory=export_path)
+    
+    print("-" * 75)
+    for i in range(0,3):
+        print(f"          Exiting program in {3-i}...") 
+        time.sleep(1)
+        print("-" * 75)
+    exit()
+    
     
     
     
