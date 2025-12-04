@@ -2,7 +2,7 @@
 
 ## 📖 Project Overview
 
-Designed for the ENGR 102 curriculum at Oregon State University, this application is a Python-based data simulation engine that automates the creation of educational engineering datasets. It algorithmically generates high-fidelity, time-series operational data for autonomous delivery robots, allowing specific engineering trade-offs (e.g., mass vs. power consumption) to be modeled and analyzed by students. :contentReference[oaicite:0]{index=0}
+Designed for the ENGR 102 curriculum at Oregon State University, this application is a Python-based data simulation engine that automates the creation of educational engineering datasets. It algorithmically generates high-fidelity, time-series operational data for autonomous delivery robots, allowing specific engineering trade-offs (e.g., mass vs. power consumption) to be modeled and analyzed by students.
 
 ## 💻 Tech Stack
 
@@ -23,7 +23,7 @@ Designed for the ENGR 102 curriculum at Oregon State University, this applicatio
   Uses JSON serialization (`data.json`) to decouple simulation parameters from the codebase, allowing for scalable difficulty adjustments.
 
 - **Data Aggregation Logic**  
-  Includes an automated **Answer Key** generator that parses generated Excel files, performs aggregate calculations, and exports a grading key, demonstrating valid Verification & Validation (V&V) logic. :contentReference[oaicite:1]{index=1}
+  Includes an automated **Answer Key** generator that parses generated Excel files, performs aggregate calculations, and exports a grading key, demonstrating valid Verification & Validation (V&V) logic.
 
 ---
 
@@ -98,3 +98,4 @@ Options:
 To adjust the simulation parameters (for example, changing the average temperature for Winter or the power consumption of the robot), modify the ```data.json``` file in the root directory. No code changes are required.
 
 <br /> <p align="center"> Edward Lam — OSU ENGR 102 F2025 024 Final Project </p>
+
