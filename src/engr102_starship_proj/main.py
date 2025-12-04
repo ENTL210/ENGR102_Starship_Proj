@@ -140,8 +140,73 @@ def generate_answer_keys(export_directory):
             print(f"              The Additional Power Consumed by the Proposed Model: {cost_of_power_consumptions} Watts")
             
             # Calculating the cost in payload volume
-            print(f"\n           Calculating the cost in payload volume")
+            print(f"\n           Calculating the cost in payload volume (m^3)")
             standard_payload_volume_file_name = "payload_volume_std.xlsx"
+            standard_payload_volume_file_path = os.path.join(item, standard_payload_volume_file_name)
+            wb = load_workbook(standard_payload_volume_file_path)
+            ws = wb.active
+            standard_payload_volume_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                standard_payload_volume_values.append(cell_value)
+            avg_standard_payload_volume = sum(standard_payload_volume_values) / len(standard_payload_volume_values)
+            
+            pv_payload_volume_file_name = "payload_volume_pv.xlsx"
+            pv_payload_volume_file_path = os.path.join(item, pv_payload_volume_file_name)
+            wb = load_workbook(pv_payload_volume_file_path)
+            ws = wb.active
+            pv_payload_volume_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                pv_payload_volume_values.append(cell_value)
+            avg_pv_payload_volume = sum(pv_payload_volume_values) / len(pv_payload_volume_values)
+            cost_of_payload_volume = round((avg_standard_payload_volume - avg_pv_payload_volume) / avg_standard_payload_volume * 100, 2)
+            print(f"              The Proposed Model reduced the payload volume (m^3) by {cost_of_payload_volume}%")
+            
+            # Calculating the cost in payload mass
+            print(f"\n           Calculating the cost in payload mass (kg)")
+            standard_payload_mass_file_name = "payload_in_kg_std.xlsx"
+            standard_payload_mass_file_path = os.path.join(item, standard_payload_mass_file_name)
+            wb = load_workbook(standard_payload_mass_file_path)
+            ws = wb.active
+            standard_payload_mass_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                standard_payload_mass_values.append(cell_value)
+            avg_standard_payload_mass = sum(standard_payload_mass_values) / len(standard_payload_mass_values)
+            
+            pv_payload_mass_file_name = "payload_in_kg_pv.xlsx"
+            pv_payload_mass_file_path = os.path.join(item, pv_payload_mass_file_name)
+            wb = load_workbook(pv_payload_mass_file_path)
+            ws = wb.active
+            pv_payload_mass_values = []
+            for row_num in range(2, datapoint_counts + 2):
+                cell_value = ws.cell(row_num, 2).value
+                pv_payload_mass_values.append(cell_value)
+            avg_pv_payload_mass = sum(pv_payload_mass_values) / len(pv_payload_mass_values)
+            cost_of_payload_mass = round((avg_standard_payload_mass - avg_pv_payload_mass) / avg_standard_payload_mass * 100, 2)
+            print(f"              The Proposed Model reduced the payload capacity (kg) by {cost_of_payload_mass}%")
+            
+            # Variable contains answer key of each dataset
+            dataset_key = {
+                "name": os.path.basename(item),
+                "avg_temp": avg_temperature_value,
+                "max_temp": max_temperature,
+                "avg_uv": avg_uv_values,
+                "max_uv": max_uv_index,
+                "total_std_power_input": sum_of_standard_power_input,
+                "total_std_power_consumed": sum_of_standard_power_consumptons,
+                "total_pv_power_input": sum_of_pv_power_input,
+                "total_pv_power_consumed": sum_of_pv_power_consumptons,
+                "cost_in_power": cost_of_power_consumptions,
+                "cost_in_payload_mass": cost_of_payload_mass,
+                "cost_in_payload_volume": cost_of_payload_volume
+            }
+            
+            result.append(dataset_key)
+            
+        print(f"\n      Generating engr102_starship_answers_key.txt...")
+        answer_key_export_path = os.path.join(export_directory, "Answers Key")
             
             
             
@@ -379,7 +444,7 @@ def get_folder_path(test_path="/Users/edwardl210/Documents/Coding/ENGR102_Starsh
                 print("")
                 
                 export_path = os.path.join(path, "engr102_starship_problems")
-                os.makedirs(os.path.join(export_path, "Answer Keys"), exist_ok=True)
+                os.makedirs(os.path.join(export_path, "Answers Key"), exist_ok=True)
                 
                 return export_path
             else: 
